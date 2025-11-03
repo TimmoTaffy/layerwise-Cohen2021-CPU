@@ -1,0 +1,15 @@
+batch
+notebooks
+upload.sh
+demo.py
+.DS_Store
+.idea
+data
+src/__pycache__
+datasets/
+*.tar.gz
+*.zip
+*.pt
+*.pth
+checkpoints/
+datasets/
