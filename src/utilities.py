@@ -27,8 +27,8 @@ def get_device() -> torch.device:
 
 def get_gd_directory(dataset: str, lr: float, arch_id: str, seed: int, opt: str, loss: str, beta: float = None):
     """Return the directory in which the results should be saved."""
-    results_dir = os.environ.get("RESULTS", os.path.expanduser("~/results"))
-    directory = f"{results_dir}/{dataset}/{arch_id}/seed_{seed}/{loss}/{opt}/"
+    results_dir = os.path.expanduser(os.environ.get("RESULTS", os.path.expanduser("~/results"))).rstrip("/")
+    directory = f"{results_dir}/{dataset}/{arch_id}/seed_{seed}/{loss}/{opt}"
     if opt == "gd":
         return f"{directory}/lr_{lr}"
     elif opt == "polyak" or opt == "nesterov":
@@ -37,13 +37,13 @@ def get_gd_directory(dataset: str, lr: float, arch_id: str, seed: int, opt: str,
 
 def get_flow_directory(dataset: str, arch_id: str, seed: int, loss: str, tick: float):
     """Return the directory in which the results should be saved."""
-    results_dir = os.environ.get("RESULTS", os.path.expanduser("~/results"))
+    results_dir = os.path.expanduser(os.environ.get("RESULTS", os.path.expanduser("~/results"))).rstrip("/")
     return f"{results_dir}/{dataset}/{arch_id}/seed_{seed}/{loss}/flow/tick_{tick}"
 
 
 def get_modified_flow_directory(dataset: str, arch_id: str, seed: int, loss: str, gd_lr: float, tick: float):
     """Return the directory in which the results should be saved."""
-    results_dir = os.environ.get("RESULTS", os.path.expanduser("~/results"))
+    results_dir = os.path.expanduser(os.environ.get("RESULTS", os.path.expanduser("~/results"))).rstrip("/")
     return f"{results_dir}/{dataset}/{arch_id}/seed_{seed}/{loss}/modified_flow_lr_{gd_lr}/tick_{tick}"
 
 
